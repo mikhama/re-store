@@ -1,20 +1,16 @@
 import React from 'react';
 
-import ErrorBoundry from '../error-boundry';
-import Spinner from '../spinner';
-import {
-  BookstoreServiceProvider,
-} from '../bookstore-service-context';
-import BookstoreService from '../../services/bookstore-service';
+import { withBookstoreService } from '../hoc';
+import Spinner from '../spinner';;
 
-const bookstore = new BookstoreService();
-
-const App = () => (
-  <ErrorBoundry>
-    <BookstoreServiceProvider value={bookstore}>
-      <Spinner />
-    </BookstoreServiceProvider>
-  </ErrorBoundry>
+const App = ({ getData }) => (
+  <p>
+    {getData().toString()}
+  </p>
 );
 
-export default App;
+const mapBookMethodsToProps = ({ getBooks }) => ({
+  getData: getBooks,
+})
+
+export default withBookstoreService(mapBookMethodsToProps)(App);
