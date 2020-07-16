@@ -11,7 +11,15 @@ const booksRequested = () => (
   }
 );
 
+const booksNotLoaded = (message) => (
+  {
+    type: 'BOOKS_NOT_LOADED',
+    payload: message,
+  }
+);
+
 export {
   booksLoaded,
   booksRequested,
+  booksNotLoaded,
 };

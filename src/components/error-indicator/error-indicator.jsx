@@ -1,9 +1,9 @@
 import React from 'react';
 
-const ErrorIndicator = () => (
+const ErrorIndicator = ({ message = 'Something went extremely wrong' }) => (
   <div className="alert alert-danger text-center" role="alert">
     <i className="fa fa-frown-o" aria-hidden="true"></i>
-    MG... Something went extremely wrong...
+    MG... {message}...
   </div>
 );
 

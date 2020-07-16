@@ -2,23 +2,38 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import BookListItem from '../book-list-item';
+import ErrorIndicator from '../error-indicator/error-indicator';
 import Spinner from '../spinner';
 import { withBookstoreService } from '../hoc';
-import { booksLoaded, booksRequested } from '../../actions';
+import { booksLoaded, booksRequested, booksNotLoaded } from '../../actions';
 import { compose } from '../../utils';
 
 class BookList extends Component {
   async componentDidMount() {
-    const { getData, booksLoaded, booksRequested } = this.props;
+    const {
+      getData,
+      booksLoaded,
+      booksRequested,
+      booksNotLoaded,
+    } = this.props;
 
     booksRequested();
-    const data = await getData();
 
-    booksLoaded(data);
+    try {
+      const data = await getData();
+
+      booksLoaded(data);
+    } catch {
+      booksNotLoaded('Cannot load books from the store database');
+    }
   }
 
   render() {
-    const { books, loading } = this.props;
+    const { books, loading, error } = this.props;
+
+    if (error) {
+      return <ErrorIndicator message={error} />;
+    }
 
     if (loading) {
       return <Spinner />;
@@ -38,9 +53,10 @@ class BookList extends Component {
   }
 };
 
-const mapStateToProps = ({ books, loading }) => ({
+const mapStateToProps = ({ books, loading, error }) => ({
   books,
   loading,
+  error,
 });
 
 const mapMethodsToProps = ({ getBooks }) => ({
@@ -50,6 +66,7 @@ const mapMethodsToProps = ({ getBooks }) => ({
 const mapDispatchToProps = {
   booksLoaded,
   booksRequested,
+  booksNotLoaded,
 };
 
 export default compose(
