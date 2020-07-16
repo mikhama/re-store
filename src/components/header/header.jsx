@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => (
   <header className="header">
     <nav className="navbar navbar-light ">
-      <a className="logo" href="#">ReStore</a>
-      <a className="cart" href="#">
+      <Link className="logo" to="/">ReStore</Link>
+      <Link className="cart" to="/cart">
         <i className="fa fa-shopping-cart cart-icon" aria-hidden="true"></i>
         <span className="cart-label">5 items ($200)</span>
-      </a>
+      </Link>
     </nav>
   </header>
 );
