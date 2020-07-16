@@ -11,10 +11,10 @@ const ShoppingCartTable = ({
   onDelete,
 }) => {
   console.log(onDecrease);
-  const renderRow = ({ id, name, count, price }, index) => (
+  const renderRow = ({ id, title, count, price }, index) => (
     <tr key={id}>
       <td>{index + 1}</td>
-      <td>{name}</td>
+      <td>{title}</td>
       <td>{count}</td>
       <td>${price}</td>
       <td>
