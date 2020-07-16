@@ -1,0 +1,82 @@
+.header {
+  margin-bottom: 30px;
+}
+
+.navbar {
+  align-items: baseline;
+}
+
+.logo {
+  font-family: 'Ranchers', cursive;
+  font-size: 48px;
+  text-decoration: none;
+  color: rgba(255, 168, 6, 0.979);
+  text-shadow: rgb(53, 53, 53) 5px 5px 0.5px;
+  transition: all 0.1s ease-out;
+  cursor: pointer;
+}
+
+.logo:hover {
+  color: rgb(30, 150, 114);
+  transform: rotateZ(3deg) scale(1.1);
+  text-shadow: rgb(53, 53, 53) 2.5px 2.5px 0.1px;
+  text-decoration: none;
+  transition: all 0.1s ease-out;
+}
+
+.cart {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  padding: 2px 8px;
+  transition: all 0.5s ease-out;
+  border-radius: 18px;
+  border: 2px solid rgba(255, 255, 255, 0);
+}
+
+.cart:hover {
+  background: rgba(255, 168, 6, 0.979);
+  text-decoration: none;
+  color: black;
+  transition: all 0.5s ease-out;
+  border: 2px solid rgb(53, 53, 53);
+}
+
+.cart .cart-label {
+  padding: 0 10px;
+}
+
+.cart:hover .cart-label {
+  color: black;
+  text-decoration: none;
+}
+
+.cart-icon {
+  font-size: 36px;
+  color: rgba(255, 168, 6, 0.979);
+  text-shadow: rgb(53, 53, 53) 0px 0px 0.1px;
+  transition: all 1s ease-out;
+}
+
+.cart:hover .cart-icon {
+  color: rgb(30, 150, 114);
+  transform: translateX(170px) scale(1.3);
+  text-shadow: rgb(53, 53, 53) -6px -1.5px 0.1px;
+  transition: all 1s ease-out;
+}
+
+.cart::before {
+  font-size: 22px;
+  line-height: 38px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  content: "Checkout";
+  display: inline-block;
+  opacity: 0;
+  transition: all 0.1s ease-out;
+}
+
+.cart:hover::before {
+  opacity: 1;
+  transition: all 0.1s ease-out;
+}

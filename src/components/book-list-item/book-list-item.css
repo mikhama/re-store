@@ -1,0 +1,30 @@
+.book-list-item {
+  margin-bottom: 30px;
+  display: flex;
+}
+
+.book-list-item img {
+  width: 200px;
+  margin-right: 20px;
+}
+
+.book-list-item .book-props {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-list-item .btn {
+  width: fit-content;
+  margin: auto 0 0;
+}
+
+.book-list-item .title {
+  font-size: 24px;
+  font-weight: 800;
+  color: rgb(30, 150, 114);
+}
+
+.book-list-item .price {
+  font-family: 'Ranchers', cursive;
+  font-size: 48px;
+}

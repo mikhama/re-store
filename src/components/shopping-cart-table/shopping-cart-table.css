@@ -1,0 +1,34 @@
+.shopping-cart-table {
+  margin-bottom: 150px;
+}
+
+.shopping-cart-table h2 {
+  font-weight: 800;
+  font-size: 34px;
+}
+
+.shopping-cart-table table td {
+  line-height: 42px;
+}
+
+.shopping-cart-table .total {
+  text-align: right;
+  font-size: 24px;
+}
+
+.shopping-cart-table .total .price {
+  display: inline-block;
+  font-family: 'Ranchers', cursive;
+  font-size: 21px;
+  background: rgba(255, 168, 6, 0.979);
+  border-radius: 30px 5px 5px 30px;
+  padding: 6px 6px 6px 15px;
+  transform: rotate(10deg);
+  box-shadow: 5px 3px 1px rgb(53, 53, 53);
+}
+.shopping-cart-table .total .price::before {
+  content: ".";
+  position: relative;
+  left: -10px;
+  top: -6px
+}
