@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 import BookListItem from '../book-list-item';
 import Spinner from '../spinner';
 import { withBookstoreService } from '../hoc';
-import { booksLoaded } from '../../actions';
+import { booksLoaded, booksRequested } from '../../actions';
 import { compose } from '../../utils';
 
 class BookList extends Component {
   async componentDidMount() {
-    const { getData, booksLoaded } = this.props;
+    const { getData, booksLoaded, booksRequested } = this.props;
 
+    booksRequested();
     const data = await getData();
 
     booksLoaded(data);
@@ -47,7 +48,8 @@ const mapMethodsToProps = ({ getBooks }) => ({
 })
 
 const mapDispatchToProps = {
-  booksLoaded
+  booksLoaded,
+  booksRequested,
 };
 
 export default compose(
