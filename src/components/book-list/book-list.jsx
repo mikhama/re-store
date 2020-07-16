@@ -9,23 +9,8 @@ import { booksLoaded, booksRequested, booksNotLoaded } from '../../actions';
 import { compose } from '../../utils';
 
 class BookList extends Component {
-  async componentDidMount() {
-    const {
-      getData,
-      booksLoaded,
-      booksRequested,
-      booksNotLoaded,
-    } = this.props;
-
-    booksRequested();
-
-    try {
-      const data = await getData();
-
-      booksLoaded(data);
-    } catch {
-      booksNotLoaded('Cannot load books from the store database');
-    }
+  componentDidMount() {
+    this.props.fetchBooks();
   }
 
   render() {
@@ -63,10 +48,22 @@ const mapMethodsToProps = ({ getBooks }) => ({
   getData: getBooks,
 })
 
-const mapDispatchToProps = {
-  booksLoaded,
-  booksRequested,
-  booksNotLoaded,
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const { getData } = ownProps;
+
+  return {
+    fetchBooks: async () => {
+      dispatch(booksRequested());
+
+      try {
+        const data = await getData();
+
+        dispatch(booksLoaded(data));
+      } catch {
+        dispatch(booksNotLoaded('Cannot load books from the store database'));
+      }
+    }
+  };
 };
 
 export default compose(
