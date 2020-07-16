@@ -5,7 +5,7 @@ import BookListItem from '../book-list-item';
 import ErrorIndicator from '../error-indicator/error-indicator';
 import Spinner from '../spinner';
 import { withBookstoreService } from '../hoc';
-import { booksLoaded, booksRequested, booksNotLoaded } from '../../actions';
+import { fetchBooks } from '../../actions';
 import { compose } from '../../utils';
 
 class BookList extends Component {
@@ -48,23 +48,9 @@ const mapMethodsToProps = ({ getBooks }) => ({
   getData: getBooks,
 })
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  const { getData } = ownProps;
-
-  return {
-    fetchBooks: async () => {
-      dispatch(booksRequested());
-
-      try {
-        const data = await getData();
-
-        dispatch(booksLoaded(data));
-      } catch {
-        dispatch(booksNotLoaded('Cannot load books from the store database'));
-      }
-    }
-  };
-};
+const mapDispatchToProps = (dispatch, { getData }) => ({
+  fetchBooks: fetchBooks(getData, dispatch)
+});
 
 export default compose(
   withBookstoreService(mapMethodsToProps),
