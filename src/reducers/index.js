@@ -48,6 +48,25 @@ const reducer = (state = initialState, action) => {
       };
     }
 
+    case 'BOOK_ADDED_TO_CART': {
+      const bookId = action.payload;
+      const book = state.books.find(({ id }) => id === bookId);
+      const newItem = {
+        id: book.id,
+        name: book.title,
+        count: 1,
+        price: book.price,
+      };
+
+      return {
+        ...state,
+        cartItems: [
+          ...state.cartItems,
+          newItem,
+        ],
+      };
+    }
+
     default:
       return state;
   }

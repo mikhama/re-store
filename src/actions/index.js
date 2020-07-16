@@ -12,6 +12,11 @@ const booksNotLoaded = (message) => ({
   payload: message,
 });
 
+const bookAddedToCart = (bookId) => ({
+  type: 'BOOK_ADDED_TO_CART',
+  payload: bookId,
+});
+
 const fetchBooks = (getData, dispatch) => async () => {
   dispatch(booksRequested());
 
@@ -26,4 +31,5 @@ const fetchBooks = (getData, dispatch) => async () => {
 
 export {
   fetchBooks,
+  bookAddedToCart,
 };
