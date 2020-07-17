@@ -27,7 +27,19 @@ const bookDecreasedInCart = (bookId) => ({
   payload: bookId,
 });
 
-const fetchBooks = (getData, dispatch) => async () => {
+const fetchBooksOld = (getData, dispatch) => async () => {
+  dispatch(booksRequested());
+
+  try {
+    const data = await getData();
+
+    dispatch(booksLoaded(data));
+  } catch {
+    dispatch(booksNotLoaded('Cannot load books from the store database'));
+  }
+}
+
+const fetchBooks = (getData) => () => async (dispatch) => {
   dispatch(booksRequested());
 
   try {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import BookListItem from '../book-list-item';
 import ErrorIndicator from '../error-indicator/error-indicator';
@@ -59,10 +60,10 @@ const mapMethodsToProps = ({ getBooks }) => ({
   getData: getBooks,
 })
 
-const mapDispatchToProps = (dispatch, { getData }) => ({
-  fetchBooks: fetchBooks(getData, dispatch),
-  onAddedToCart: (id) => dispatch(bookAddedToCart(id)),
-});
+const mapDispatchToProps = (dispatch, { getData }) => bindActionCreators({
+  fetchBooks: fetchBooks(getData),
+  onAddedToCart: bookAddedToCart,
+}, dispatch);
 
 export default compose(
   withBookstoreService(mapMethodsToProps),
