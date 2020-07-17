@@ -17,6 +17,16 @@ const bookAddedToCart = (bookId) => ({
   payload: bookId,
 });
 
+const bookDeletedFromCart = (bookId) => ({
+  type: 'BOOK_DELETED_FROM_CART',
+  payload: bookId,
+});
+
+const bookDecreasedInCart = (bookId) => ({
+  type: 'BOOK_DECREASED_IN_CART',
+  payload: bookId,
+});
+
 const fetchBooks = (getData, dispatch) => async () => {
   dispatch(booksRequested());
 
@@ -32,4 +42,6 @@ const fetchBooks = (getData, dispatch) => async () => {
 export {
   fetchBooks,
   bookAddedToCart,
+  bookDeletedFromCart,
+  bookDecreasedInCart,
 };
